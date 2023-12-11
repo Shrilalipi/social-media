@@ -14,7 +14,7 @@ const { authenticate } = authentication.hooks;
 
 export default {
   before: {
-    all: [],
+    all: [authenticate('jwt')],
     find: [SetDefaultQuery('status', 1)],
     get: [SetDefaultQuery('status', 1)],
     create: [

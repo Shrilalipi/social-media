@@ -5,22 +5,20 @@
 import axios from "axios";
 
 const uploadToFacebook = async (pageAccessToken: string, pageId: string, message: string, link: string) => {
-    try {
-        const response = await axios.post(`https://graph.facebook.com/v15.0/${pageId}/feed?access_token=${pageAccessToken}`, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            data: {
-                message,
-                link
-            },
-        });
 
-        console.log('Photo uploaded successfully:', response.data);
-    } catch (error: any) {
-        console.log(error);
-        console.error('Error uploading photo to Facebook:', error.response ? error.response.data : error.message);
-    }
+    const response = await axios.post(`https://graph.facebook.com/v15.0/${pageId}/feed?access_token=${pageAccessToken}`, {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        data: {
+            message,
+            link
+        },
+    })
+        .then((res: any) => res.data)
+        .catch((e: any) => e.message);
+
+    return response;
 };
 
 export default uploadToFacebook;

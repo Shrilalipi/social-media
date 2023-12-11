@@ -13,6 +13,8 @@ export default function (app: Application): Model<any> {
     email: { type: String, unique: true, lowercase: true },
     phone: { type: String },
     socialId: { type: String },
+    facebookPosts: { type: Array },
+    userFacebookPages: { type: Array },
     postCount: { type: Number, default: 0 },
     status: { type: Number, enum: [1, -1], default: 1 }
   }, {
