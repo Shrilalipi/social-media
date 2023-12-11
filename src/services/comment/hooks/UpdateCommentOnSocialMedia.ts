@@ -4,12 +4,16 @@
 
 
 import { HookContext } from "@feathersjs/feathers";
+import commentOnInstagramPost from "../utils/commentOnInstagramPost";
 
 const UpdateCommentOnSocialMedia = () => async (context: HookContext) => {
-    const { result } = context;
-    const { } = result;
+    const { data, result } = context;
+    const { mediaId, accessToken } = data;
+    const { comment } = result;
 
+    await commentOnInstagramPost(mediaId, accessToken, comment);
 
+    return context;
 }
 
 export default UpdateCommentOnSocialMedia;

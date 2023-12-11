@@ -3,12 +3,13 @@
  */
 
 import { HookContext } from "@feathersjs/feathers";
+import likeFacebookPost from "../utils/likeFacebookPost";
 
 const UpdateLikeOnSocialMedia = () => async (context: HookContext) => {
-    const { result } = context;
-    const { } = result;
+    const { data } = context;
+    const { pageAccessToken, postObjectId } = data;
 
-
+    await likeFacebookPost(pageAccessToken, postObjectId)
 }
 
 export default UpdateLikeOnSocialMedia;

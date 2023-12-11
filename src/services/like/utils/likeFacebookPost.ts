@@ -5,18 +5,28 @@
 import axios from "axios";
 
 // Function to like a post
-const likeFacebookPost = async (accessToken: string, postId: string) => {
-    try {
-        // const likeResponse = await axios.post(`https://graph.facebook.com/v13.0/${postId}/likes`, null, {
-        //     params: {
-        //         access_token: accessToken,
-        //     },
-        // });
+const likeFacebookPost = async (pageAccessToken: string, page_object_id: string) => {
 
-        // console.log('Post liked successfully:', likeResponse.data);
-    } catch (error: any) {
-        console.error('Error liking post:', error.response ? error.response.data : error.message);
-    }
+    // // Find the post-object-id 
+    // const postData = await axios.post(`https://graph.facebook.com/v13.0/me/feeds?fields=object_id`, null, {
+    //     params: {
+    //         access_token: accessToken,
+    //     },
+    // })
+    //     .then((res: any) => res.data)
+    //     .catch((e: any) => console.log(e.message));
+
+
+    const likeResponse = await axios.post(`https://graph.facebook.com/v13.0/${page_object_id}/likes`, {
+        params: {
+            access_token: pageAccessToken,
+        },
+    })
+        .then((res: any) => res.data)
+        .catch((e: any) => console.log(e.message));
+
+
+    return likeResponse;
 };
 
 export default likeFacebookPost;
