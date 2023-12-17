@@ -1,19 +1,13 @@
 /**
  * Created By Shrilalipi(shrilalipi@gmail.com) on 05/12/2023 at 3:34 PM.
+ * Handle facebook login.
+ * @param context - Feathers Context object.
  */
 import { HookContext } from '@feathersjs/feathers';
-import { Authenticate_POST, AuthStrategies } from '../interfaces/AuthenticationInterface';
 import { BadRequest, FeathersError } from '@feathersjs/errors';
-import { SocialLoginInterface } from '../../../utils/SocialLoginUtilities/SocialLoginInterfaces';
-import { SocialLoginUtilities } from '../../../utils/SocialLoginUtilities/SocialLoginUtilities';
 import generateAccesstoken from '../../../utils/generateAccessToken';
 import getUserFacebookDetails from '../../../utils/MetaUtilities/FacebookUtilities/getUserFacebookDetails';
 
-
-/**
- * Handle different types of social media login.
- * @param context - Feathers Context object.
- */
 const handleSocialMediaLogin = () => async (context: HookContext) => {
     const { app, data } = context;
     const { accessToken } = data;
