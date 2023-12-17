@@ -3,45 +3,27 @@
  */
 
 import { HookContext } from "@feathersjs/feathers";
-import uploadToFacebook from "../utils/uploadToFacebook";
-import uploadToInstagram from "../utils/uploadToInstagram";
+import postAnImageToFacebookPage from "../../../utils/MetaUtilities/FacebookUtilities/postAnImageToFacebookPage";
+import postAnImageToInstagram from "../../../utils/MetaUtilities/InstagramUtilities/postAnImageToInstagram";
+import getConnectedIgUserId from "../../../utils/MetaUtilities/InstagramUtilities/getConnectedIgUserId";
 
 const UpdatePostOnSocialMedia = () => async (context: HookContext) => {
-    const { result, data, params } = context;
+    const { result, data, app } = context;
     const { attachment, caption } = result;
-    const { pageId, pageAccessToken } = data;
-    const { user } = params;
-    if (!user) return context;
+    const { pageId, accessToken } = data;
 
-    const { userFacebookPages } = user;
-    if (userFacebookPages && userFacebookPages.length) {
-        // console.log("userFacebookPages: ", userFacebookPages[0]);
-        const { data } = userFacebookPages[0];
-
-        if (data && data.length && pageId) {
-            let validPageId = data.map((each: any) => each.id.toString === pageId.toString());
-
-            if (validPageId && validPageId.length) {
-                await uploadToFacebook(pageAccessToken, pageId, caption, attachment);
-                await uploadToInstagram(pageAccessToken, pageId, caption, attachment)
+    let igUserId;
+    if (accessToken) {
+        if (pageId) {
+            igUserId = await getConnectedIgUserId(app, accessToken, pageId);
+            await postAnImageToFacebookPage(app, accessToken, pageId, caption, attachment);
+            if (igUserId) {
+                await postAnImageToInstagram(app, accessToken, igUserId, attachment, caption);
             }
         }
-
-
     }
-
-    // await uploadToInstagram(accessToken, )
 
     return context;
 }
 
 export default UpdatePostOnSocialMedia;
-
-// {
-//     access_token: 'EAAPjzqMH0VIBOzBIDax5NYRkft4CHoXpGFcXEFX4nZCh00MOZB51hch1eRVa3CeCWsZCZBEbWI1l1Ycaao1mGz1NM3AbZA16DHZAEnyWUZBDNq8fSH2ZAWAqJhaykMX0IbCACLP2BF7fN8A7aY8tA8BwTRceZB3zbCroKk2I0U1LnT3Ye57FvYnK3V2bUiUttd6HR00qcUiQtxdiTBzT0pFYoULcgU6v62aZBSi2bofmdGELTXp5UZD',
-//         category: 'Pizza place',
-//             category_list: [Array],
-//                 name: 'Page 1',
-//                     id: '196603580199525',
-//                         tasks: [Array]
-// },

@@ -15,15 +15,8 @@ export default {
     find: [disallow()],
     get: [disallow()],
     create: [
-      FRequired(['strategy', 'accessToken']),
-      iff(
-        hasData(
-          'strategy',
-          AuthStrategies.FACEBOOK,
-          AuthStrategies.INSTAGRAM,
-        ),
-        handleSocialMediaLogin()
-      ).else(disallow())
+      FRequired(['accessToken']),
+      handleSocialMediaLogin()
     ],
     update: [disallow()],
     patch: [disallow()],

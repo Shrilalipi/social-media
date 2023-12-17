@@ -29,7 +29,7 @@ export enum Actions {
 }
 
 export interface Authenticate_POST {
-    strategy: AuthStrategies;
+    strategy?: AuthStrategies;
     action?: Actions;
     phone?: string;
     email?: string;

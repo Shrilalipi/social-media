@@ -28,5 +28,6 @@
       "passwordField": "password"
     }
   },
-  "mongodb": "mongodb+srv://shrilalipi:Shrila%40123@shrilalipi.vdzc5wi.mongodb.net/social_media_manager"
+  "mongodb": "mongodb+srv://shrilalipi:Shrila%40123@shrilalipi.vdzc5wi.mongodb.net/social_media_manager",
+  "facebook_oauth_url": "https://www.facebook.com/v18.0"
 }
