@@ -1,5 +1,6 @@
 /**
  * Created By Shrilalipi(shrilalipi@gmail.com) on 05-12-2023 at 13:42.
+ * @description instead of deleting an item from database, it only changes it's status
  */
 import { HookContext, Query } from '@feathersjs/feathers';
 

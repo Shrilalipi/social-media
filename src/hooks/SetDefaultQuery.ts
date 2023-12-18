@@ -1,5 +1,6 @@
 /**
  * Created By Shrilalipi(shrilalipi@gmail.com) on 05-12-2023 at 13:35.
+ * @description set default value for a field in query
  */
 import { HookContext } from '@feathersjs/feathers';
 

@@ -17,7 +17,7 @@ export default {
     all: [authenticate('jwt')],
     find: [FRequiredQuery('post'), SetDefaultQuery('status', 1)],
     get: [disallow()],
-    create: [SetCreatedBy(), FRequired('post'), SetDefaultItem('status', 1)],
+    create: [SetCreatedBy(), FRequired(['post', 'accessToken', 'pageFeedId']), SetDefaultItem('status', 1)],
     update: [disallow()],
     patch: [disallow()],
     remove: [SetCreatedByQuery(), PatchDeleted()]

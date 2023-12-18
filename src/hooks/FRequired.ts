@@ -1,5 +1,6 @@
 /**
  * Created By Shrilalipi(shrilalipi@gmail.com) on 03-12-2023 at 01:15.
+ * @description check required fields in data
  */
 import { HookContext } from '@feathersjs/feathers';
 import { checkContext, getItems } from 'feathers-hooks-common';

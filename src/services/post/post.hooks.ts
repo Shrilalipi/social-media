@@ -19,7 +19,7 @@ export default {
     get: [SetDefaultQuery('status', 1)],
     create: [
       SetCreatedBy(),
-      FRequired(['attachment', 'caption']),
+      FRequired(['attachment', 'caption', 'pageId', 'accessToken']),
       SetDefaultItem('status', 1)
     ],
     update: [disallow()],

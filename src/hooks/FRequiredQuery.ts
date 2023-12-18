@@ -1,6 +1,6 @@
 /**
  * Created by Shrilalipi <shrilalipi@gmail.com> on 30/04/2023
- * @description set a required field
+ * @description check required fields in query
  */
 import { checkContext } from 'feathers-hooks-common';
 import { BadRequest } from '@feathersjs/errors';
